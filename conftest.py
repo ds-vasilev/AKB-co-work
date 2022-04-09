@@ -9,7 +9,7 @@ def pytest_addoption(parser):
         "--url",
         action="store",
         default="https://berpress.github.io/react-shop/",
-        help="RSS url",
+        help="store",
     ),
 
 
