@@ -1,5 +1,6 @@
 from fixtures.constants import RegMessages
 from models.register import RegisterUserModel
+from fixtures.constants_test_cases import TestCases
 
 
 class TestRegistrationPage:
@@ -12,10 +13,11 @@ class TestRegistrationPage:
     def test_invalid_email(self, app):
         app.registration_page.open_registration_page()
         data = RegisterUserModel.random()
-        data.email = "nekorrektnii#email"
-        app.registration_page.entry_data_registration(data=data)
-        assert app.registration_page.reg_status_big_red_tab() == RegMessages.INVALID_EMAIL[0]\
-               + str(data.email) + RegMessages.INVALID_EMAIL[1]
+        for test_case in TestCases.INVALID_EMAILS_LIST:
+            data.email = test_case.get("test_input")
+            app.registration_page.entry_data_registration(data=data)
+            assert app.registration_page.reg_status_big_red_tab() == RegMessages.INVALID_EMAIL[0]\
+                   + str(data.email) + RegMessages.INVALID_EMAIL[1]
 
     def test_different_passwords(self, app):
         app.registration_page.open_registration_page()
@@ -32,10 +34,12 @@ class TestRegistrationPage:
         app.registration_page.entry_data_registration(data=data)
         assert app.registration_page.reg_status_big_red_tab() == RegMessages.INVALID_SHORT_PASS
 
-
-    # def test_invalid_email_register(self, app):  # кирилические домены не проходят проверку
-    #     pass
-    #
-    # def test_base_drop_404(self, app):  # Todo проверить  Error, check network
-    #     """после 3 попыток база падает."""
-    #     pass
+    def test_base_drop_404(self, app):
+        """В такой конфигурации вылетает "Error, check network!"."""
+        app.registration_page.open_registration_page()
+        data = RegisterUserModel.random()
+        data.email  = "111@111.ru"
+        data.password_1  = "111@111.ru"
+        data.password_2  = "111@111.ru"
+        app.registration_page.entry_data_registration(data=data)
+        assert app.registration_page.reg_status_on_top_right() == RegMessages.ERROR_CHECK_NETWORK

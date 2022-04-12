@@ -16,3 +16,9 @@ pre-commit https://pre-commit.com/
 pip install pre-commit
 pre-commit install
 ```
+
+
+Списко багов на уточнение:
+- "Erorr, check network" при регистрции через одинаковые имена-пароли
+- Граматическая ошибка во всплывашке "Erorr, check network"
+- регистратция через кирилические домены не работает 

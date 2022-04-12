@@ -40,14 +40,17 @@ class RegistrationPage:
 
     def _entry_email(self, data: str):
         email = self.app.driver.find_element(*self.EMAIL)
+        email.clear()
         email.send_keys(data)
 
     def _entry_password(self, data: str):
         email = self.app.driver.find_element(*self.PASS_1)
+        email.clear()
         email.send_keys(data)
 
     def _entry_password_repeat(self, data: str):
         email = self.app.driver.find_element(*self.PASS_2)
+        email.clear()
         email.send_keys(data)
 
     def _click_button_register(self):
