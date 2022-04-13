@@ -1,8 +1,9 @@
 from selenium.webdriver.common.by import By
+from fixtures.pages.base_page import BasePage
 from models.register import RegisterUserModel
 
 
-class RegistrationPage:
+class RegistrationPage(BasePage):
     REG_BUTTON_ON_HEADER = (By.ID, "register-link")
     EMAIL = (By.ID, "name")
     PASS_1 = (By.ID, "password1")
@@ -10,20 +11,33 @@ class RegistrationPage:
     REG_BUTTON = (By.ID, "register")
     MESSAGE_REG_STATUS_TOP_RIGHT = (By.CLASS_NAME, "toast")
     MESSAGE_REG_STATUS_ERROR_BIG_RED = (By.CLASS_NAME, "card-panel")
+    REG_INTERFACE_IMAGE = (By.CLASS_NAME, "image-login")
+    REG_INTERFACE_REG_NEW_USER = (By.CSS_SELECTOR, "h4")
+    # REG_INTERFACE_EMAIL = (By.CLASS_NAME, "image-login")
+    # REG_INTERFACE_PASS_1 = (By.CLASS_NAME, "image-login")
+    # REG_INTERFACE_PASS_2 = (By.CLASS_NAME, "image-login")
 
+    def header_verifiers(self):   # Todo будет вынесено в отдельную страницу после окончательно обсуждения внутри команды
+        pass
 
-    def __init__(self, app):
-        self.app = app
+    def footer_verifiers(self):  # Todo будет вынесено в отдельную страницу после окончательно обсуждения внутри команды
+        pass
+
+    def reg_interface_image(self):
+        element = self.app.driver.find_element(*self.REG_INTERFACE_IMAGE)
+        element = self.app.driver.find_element(*self.REG_INTERFACE_REG_NEW_USER)
 
     def open_registration_page(self):
         """
         open reg page
         """
-        self.app.driver.get(self.app.url)
-        self.app.driver.fullscreen_window()   # todo уточнить про реализацию
-        # self.app.driver.add_argument('--start-maximized')  # не сработало
-        reg_button = self.app.driver.find_element(*self.REG_BUTTON_ON_HEADER)
-        reg_button.click()
+        # self.app.driver.get(self.app.url)
+        # self.app.driver.fullscreen_window()   # todo уточнить про реализацию
+        # reg_button = self.app.driver.find_element(*self.REG_BUTTON_ON_HEADER)
+        # reg_button.click()
+        self.open_page(self.app.url)
+        self.click_element(locator=self.REG_BUTTON_ON_HEADER)
+
 
     def entry_data_registration(self, data: RegisterUserModel):
         """
@@ -35,29 +49,41 @@ class RegistrationPage:
         self._click_button_register()
 
     def reg_status_on_top_right(self) -> str:
-        element = self.app.driver.find_element(*self.MESSAGE_REG_STATUS_TOP_RIGHT)
-        return element.text
+        """информационная всплывашка справа-вверху"""
+        # element = self.app.driver.find_element(*self.MESSAGE_REG_STATUS_TOP_RIGHT)
+        element = self.text(locator=self.MESSAGE_REG_STATUS_TOP_RIGHT)
+        return element
 
     def _entry_email(self, data: str):
-        email = self.app.driver.find_element(*self.EMAIL)
-        email.clear()
-        email.send_keys(data)
+        # email = self.app.driver.find_element(*self.EMAIL)
+        # email.clear()
+        # email.send_keys(data)
+        self.fill(locator=self.EMAIL, value=data)
 
     def _entry_password(self, data: str):
-        email = self.app.driver.find_element(*self.PASS_1)
-        email.clear()
-        email.send_keys(data)
+        # email = self.app.driver.find_element(*self.PASS_1)
+        # email.clear()
+        # email.send_keys(data)
+        self.fill(locator=self.PASS_1, value=data)
 
     def _entry_password_repeat(self, data: str):
-        email = self.app.driver.find_element(*self.PASS_2)
-        email.clear()
-        email.send_keys(data)
+        # email = self.app.driver.find_element(*self.PASS_2)
+        # email.clear()
+        # email.send_keys(data)
+        self.fill(locator=self.PASS_2, value=data)
 
     def _click_button_register(self):
-        reg_button = self.app.driver.find_element(*self.REG_BUTTON)
-        reg_button.click()
+        """
+        Клик.
+        """
+        # reg_button = self.app.driver.find_element(*self.REG_BUTTON)
+        # reg_button.click()
+        self.click_element(locator=self.REG_BUTTON)
 
     def reg_status_big_red_tab(self) -> str:
-        element = self.app.driver.find_element(*self.MESSAGE_REG_STATUS_ERROR_BIG_RED)
-        return element.text
-
+        """
+        алертная всплывашка снизу на невалидные данные.
+        """
+        # element = self.app.driver.find_element(*self.MESSAGE_REG_STATUS_ERROR_BIG_RED)
+        element = self.text(locator=self.MESSAGE_REG_STATUS_ERROR_BIG_RED)
+        return element
