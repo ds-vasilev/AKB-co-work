@@ -31,10 +31,6 @@ class RegistrationPage(BasePage):
         """
         open reg page
         """
-        # self.app.driver.get(self.app.url)
-        # self.app.driver.fullscreen_window()   # todo уточнить про реализацию
-        # reg_button = self.app.driver.find_element(*self.REG_BUTTON_ON_HEADER)
-        # reg_button.click()
         self.open_page(self.app.url)
         self.click_element(locator=self.REG_BUTTON_ON_HEADER)
 
@@ -50,40 +46,27 @@ class RegistrationPage(BasePage):
 
     def reg_status_on_top_right(self) -> str:
         """информационная всплывашка справа-вверху"""
-        # element = self.app.driver.find_element(*self.MESSAGE_REG_STATUS_TOP_RIGHT)
         element = self.text(locator=self.MESSAGE_REG_STATUS_TOP_RIGHT)
         return element
 
     def _entry_email(self, data: str):
-        # email = self.app.driver.find_element(*self.EMAIL)
-        # email.clear()
-        # email.send_keys(data)
         self.fill(locator=self.EMAIL, value=data)
 
     def _entry_password(self, data: str):
-        # email = self.app.driver.find_element(*self.PASS_1)
-        # email.clear()
-        # email.send_keys(data)
         self.fill(locator=self.PASS_1, value=data)
 
     def _entry_password_repeat(self, data: str):
-        # email = self.app.driver.find_element(*self.PASS_2)
-        # email.clear()
-        # email.send_keys(data)
         self.fill(locator=self.PASS_2, value=data)
 
     def _click_button_register(self):
         """
         Клик.
         """
-        # reg_button = self.app.driver.find_element(*self.REG_BUTTON)
-        # reg_button.click()
         self.click_element(locator=self.REG_BUTTON)
 
     def reg_status_big_red_tab(self) -> str:
         """
         алертная всплывашка снизу на невалидные данные.
         """
-        # element = self.app.driver.find_element(*self.MESSAGE_REG_STATUS_ERROR_BIG_RED)
         element = self.text(locator=self.MESSAGE_REG_STATUS_ERROR_BIG_RED)
         return element

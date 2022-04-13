@@ -48,3 +48,4 @@ class BasePage:
         """
         self.app.driver.get(url)
         self.app.driver.fullscreen_window()
+        

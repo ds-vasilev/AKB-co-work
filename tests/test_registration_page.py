@@ -4,6 +4,7 @@ from models.register import RegisterUserModel
 from fixtures.constants_test_cases import TestCases
 #НУЖНЫ ПРОВЕРКИ ИНТЕРФЕЙСА
 #НУЖНЫ НОРМАЛЬНЫЕ ВЫВОДЫ НА АССЕРТАХ
+#ПОСЛЕДНИЙ ТЕСТ ПОМЕНЯТЬ НА ОДНОЗНАЧНЫЙ ДВОЙНОЙ ВВОД
 
 class TestRegistrationPage:
     def test_valid_register(self, app):
@@ -50,7 +51,7 @@ class TestRegistrationPage:
 
     def test_base_drop_404(self, app):
         """
-        Тест вылетает "Error, check network!".   TODO ПОМЕНЯТЬ НА ДВОЙНОЙ ВВОД!!!!!!!!!!!!!11111111111111
+        Тест вылетает "Error, check network!".   TODO РЕАЛИЗОВАТЬ НОРМАЛЬНЫЙ НА ДВОЙНОЙ ВВОД!!!!!!!!!!!!!11111
         """
         app.registration_page.open_registration_page()
         data = RegisterUserModel.random()
