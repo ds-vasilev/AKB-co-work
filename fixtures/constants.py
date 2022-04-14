@@ -6,6 +6,10 @@ class RegMessages:
     ERROR_CHECK_NETWORK = ("Erorr, check network!")
 
 
+class LogMessages:
+    SUCCESS = "Success"
+
+
 
 
 class ErrorText:

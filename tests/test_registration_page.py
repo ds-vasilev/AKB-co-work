@@ -7,6 +7,9 @@ from fixtures.constants_test_cases import TestCases
 #НУЖНЫ НОРМАЛЬНЫЕ ВЫВОДЫ НА АССЕРТАХ
 #ПОСЛЕДНИЙ ТЕСТ ПОМЕНЯТЬ НА ОДНОЗНАЧНЫЙ ДВОЙНОЙ ВВОД
 
+# email = f"{pendulum.now().timestamp()}-{fake.email()}"
+
+
 class TestRegistrationPage:
     def test_valid_register(self, app):
         """
@@ -56,8 +59,10 @@ class TestRegistrationPage:
         """
         app.registration_page.open_registration_page()
         data = RegisterUserModel.random()
-        data.email  = "111@111.ru"
+        data.email  = "112@111.ru"
         data.password_1  = "111@111.ru"
         data.password_2  = "111@111.ru"
+        app.registration_page.entry_data_registration(data=data)
+        time.sleep(3)
         app.registration_page.entry_data_registration(data=data)
         assert app.registration_page.reg_status_on_top_right() == RegMessages.ERROR_CHECK_NETWORK
