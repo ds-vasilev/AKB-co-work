@@ -1,4 +1,5 @@
 import pytest
+import time
 from fixtures.constants import RegMessages
 from models.register import RegisterUserModel
 from fixtures.constants_test_cases import TestCases

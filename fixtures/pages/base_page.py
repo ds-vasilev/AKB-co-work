@@ -21,7 +21,7 @@ class BasePage:
 
     def click_element(self, locator, wait_time = 20):
         """
-        Click element
+        Click element.
         """
         element = self._find_element(locator, wait_time)
         element.click()
@@ -37,15 +37,21 @@ class BasePage:
 
     def text(self, locator, wait_time=20) -> str:
         """
-        Get element text
+        Get element text.
         """
         element = self._find_element(locator, wait_time)
         return element.text
 
     def open_page(self, url: str):
         """
-        Open page
+        Open page.
         """
         self.app.driver.get(url)
         self.app.driver.fullscreen_window()
-        
+
+    def clear(self, locator, wait_time = 20):
+        """
+        Clear element.
+        """
+        element = self._find_element(locator, wait_time)
+        element.clear()

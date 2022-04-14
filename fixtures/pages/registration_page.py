@@ -50,6 +50,7 @@ class RegistrationPage(BasePage):
         return element
 
     def _entry_email(self, data: str):
+        self.clear(locator=self.EMAIL)
         self.fill(locator=self.EMAIL, value=data)
 
     def _entry_password(self, data: str):
