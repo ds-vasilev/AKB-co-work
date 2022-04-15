@@ -4,10 +4,6 @@ from fixtures.constants import RegMessages
 from models.register import RegisterUserModel
 from fixtures.constants_test_cases import TestCases
 #НУЖНЫ ПРОВЕРКИ ИНТЕРФЕЙСА
-#НУЖНЫ НОРМАЛЬНЫЕ ВЫВОДЫ НА АССЕРТАХ
-#ПОСЛЕДНИЙ ТЕСТ ПОМЕНЯТЬ НА ОДНОЗНАЧНЫЙ ДВОЙНОЙ ВВОД
-
-# email = f"{pendulum.now().timestamp()}-{fake.email()}"
 
 
 class TestRegistrationPage:
@@ -20,7 +16,7 @@ class TestRegistrationPage:
         app.registration_page.entry_data_registration(data=data)
         assert app.registration_page.reg_status_on_top_right() == RegMessages.SUCCESS
 
-    @pytest.mark.parametrize("invalid_email",(TestCases.INVALID_EMAILS_LIST))
+    @pytest.mark.parametrize("invalid_email", (TestCases.INVALID_EMAILS_LIST_FOR_REG))
     def test_invalid_email(self, app, invalid_email):
         """
         Тесты на невалидный эмейл.

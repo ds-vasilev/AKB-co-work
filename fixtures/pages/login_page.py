@@ -30,3 +30,9 @@ class LoginPage(BasePage):
         """информационная всплывашка справа-вверху"""
         element = self.text(locator=self.MESSAGE_LOG_STATUS_TOP_RIGHT)
         return element
+
+    # def click_login_button(self):
+    #     """
+    #     open log page
+    #     """
+    #     self.click_element(locator=self.LOGIN_BUTTON_ON_HEADER)
