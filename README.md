@@ -1,5 +1,4 @@
-# rss_reader_tests
-Selenium python rss reader tests
+[![Python application](https://github.com/ds-vasilev/AKB-co-work/actions/workflows/python-app.yml/badge.svg)](https://github.com/ds-vasilev/AKB-co-work/actions/workflows/python-app.yml)
 
 Our test app https://berpress.github.io/react-shop/
 
@@ -16,3 +15,10 @@ pre-commit https://pre-commit.com/
 pip install pre-commit
 pre-commit install
 ```
+
+
+Список багов:
+- "Erorr, check network" при регистрции через одинаковые имена-пароли
+- грамматическая ошибка во всплывашке "Erorr, check network"
+- регистрация через кирилические домены не работает 
+- ломается верстка при появлении большого красного аллерта на странице регистрации при попытке ввода невалидных данных
