@@ -8,6 +8,8 @@ class RegistrationPage:
     PASS_1 = (By.ID, "password1")
     PASS_2 = (By.ID, "password2")
     REG_BUTTON = (By.ID, "register")
+    MESSAGE_REG_STATUS_TOP_RIGHT = (By.CLASS_NAME, "toast")
+    MESSAGE_REG_STATUS_ERROR_BIG_RED = (By.CLASS_NAME, "card-panel")
 
     def __init__(self, app):
         self.app = app
@@ -17,8 +19,7 @@ class RegistrationPage:
         open reg page
         """
         self.app.driver.get(self.app.url)
-        self.app.driver.fullscreen_window()   # todo уточнить про реализацию
-        # self.app.driver.add_argument('--start-maximized')  # не сработало
+        self.app.driver.fullscreen_window()  # todo уточнить про реализацию
         reg_button = self.app.driver.find_element(*self.REG_BUTTON_ON_HEADER)
         reg_button.click()
 
@@ -30,33 +31,30 @@ class RegistrationPage:
         self._entry_password(data.password_1)
         self._entry_password_repeat(data.password_2)
         self._click_button_register()
-        # email_field = self.app.driver.find_element(*self.EMAIL)
-        # email_field.send_keys(f"user{random.randint(0, 1000)}@test.com")  # todo заглушка
-        # pass_1_field = self.app.driver.find_element(*self.PASS_1)
-        # pass_1_field.send_keys("1234567")
-        # pass_2_field = self.app.driver.find_element(*self.PASS_2)
-        # pass_2_field.send_keys("1234567")
-        #
-        # reg_button = self.app.driver.find_element(*self.REG_BUTTON)
-        # reg_button.click()
 
-    # def error_text(self) -> str:
-    #     element = self.app.driver.find_element(*self.ERROR_TEXT)
-    #     return element.text
+    def reg_status_on_top_right(self) -> str:
+        element = self.app.driver.find_element(*self.MESSAGE_REG_STATUS_TOP_RIGHT)
+        return element.text
 
     def _entry_email(self, data: str):
         email = self.app.driver.find_element(*self.EMAIL)
+        email.clear()
         email.send_keys(data)
 
     def _entry_password(self, data: str):
         email = self.app.driver.find_element(*self.PASS_1)
+        email.clear()
         email.send_keys(data)
 
     def _entry_password_repeat(self, data: str):
         email = self.app.driver.find_element(*self.PASS_2)
+        email.clear()
         email.send_keys(data)
 
     def _click_button_register(self):
         reg_button = self.app.driver.find_element(*self.REG_BUTTON)
         reg_button.click()
 
+    def reg_status_big_red_tab(self) -> str:
+        element = self.app.driver.find_element(*self.MESSAGE_REG_STATUS_ERROR_BIG_RED)
+        return element.text
