@@ -6,6 +6,12 @@ class RegMessages:
     ERROR_CHECK_NETWORK = ("Erorr, check network!")
 
 
+class LogMessages:
+    SUCCESS = "Success"
+    ALREADY_LOGIN = "You already login, please click logout!"
+    INVALID_CREDENTAILS = "Invalid credentials"
+
+
 
 
 class ErrorText:
