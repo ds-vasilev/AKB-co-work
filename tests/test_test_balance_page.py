@@ -8,6 +8,7 @@ import pytest
 
 # доделать при вводе в поля буквенных символов Erorr! Please check network!
 # разнести ерроры в файл
+# баг при введении 16 символов в поле номер карты
 
 class TestSignInPage:
 
@@ -31,6 +32,17 @@ class TestSignInPage:
                                             cash=data.cash)
         assert app.balance_page.log_status_invalid() == "Check card number! It must be 16 symbols and not empty!"
 
+    @pytest.mark.parametrize("invalid_card_number", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_NUM_WORD)
+    def test_invalid_card_number_input_word(self, app, login_user, invalid_card_number):
+        """
+        Проверка ввода невалидных значений в поле номер карты
+        """
+        app.balance_page.open_balance_page()
+        data = BalanceUserModel.random()
+        app.balance_page.entry_data_balance(name=data.name, card=invalid_card_number, date_card=data.card_data,
+                                            cash=data.cash)
+        assert app.balance_page.log_status_invalid_input_word() == "Erorr, check network!"
+
     @pytest.mark.parametrize("invalid_card_date", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_DATE)
     def test_invalid_card_date(self, app, login_user, invalid_card_date):
         """
@@ -41,6 +53,17 @@ class TestSignInPage:
         app.balance_page.entry_data_balance(name=data.name, card=data.card, date_card=invalid_card_date,
                                             cash=data.cash)
         assert app.balance_page.log_status_invalid() == "Check card date! It must be not empty!"
+
+    @pytest.mark.parametrize("invalid_card_date", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_DATE_WORD)
+    def test_invalid_card_date_input_word(self, app, login_user, invalid_card_date):
+        """
+        Проверка ввода невалидных значений в поле номер карты
+        """
+        app.balance_page.open_balance_page()
+        data = BalanceUserModel.random()
+        app.balance_page.entry_data_balance(name=data.name, card=data.card, date_card=invalid_card_date,
+                                            cash=data.cash)
+        assert app.balance_page.log_status_invalid_input_word() == "Erorr, check network!"
 
     @pytest.mark.parametrize("invalid_card_user", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_USER)
     def test_invalid_card_date(self, app, login_user, invalid_card_user):

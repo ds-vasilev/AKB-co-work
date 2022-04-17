@@ -1,3 +1,5 @@
+import time
+
 from fixtures.pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 
@@ -14,6 +16,7 @@ class BalancePage(BasePage):
     BT_BALANCE = (By.ID, "blance-link")
     SUCCESS_ADD_BALANCE = (By.CLASS_NAME, "toast")
     INVALID_CARD_NUMBER = (By.CLASS_NAME, "card-panel")
+    MESSAGE_LOG_STATUS_TOP_RIGHT = (By.CLASS_NAME, "toast")
 
     def open_balance_page(self):
         """
@@ -51,4 +54,9 @@ class BalancePage(BasePage):
     def log_status_invalid(self) -> str:
         """информационная всплывашка справа-вверху"""
         element = self.text(locator=self.INVALID_CARD_NUMBER)
+        return element
+
+    def log_status_invalid_input_word(self) -> str:
+        """информационная всплывашка справа-вверху"""
+        element = self.text(locator=self.MESSAGE_LOG_STATUS_TOP_RIGHT)
         return element

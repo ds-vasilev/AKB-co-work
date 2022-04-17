@@ -24,9 +24,15 @@ class TestCases:
         ["324657236485234576237485"],
         [""]
     ]
+    INVALID_DATA_FOR_BALANCE_PAGE_CARD_NUM_WORD = [
+        ["qwerqwerqwerqwer"]
+    ]
 
     INVALID_DATA_FOR_BALANCE_PAGE_CARD_DATE = [
         [""]
+    ]
+    INVALID_DATA_FOR_BALANCE_PAGE_CARD_DATE_WORD = [
+        ["salut"]
     ]
 
     INVALID_DATA_FOR_BALANCE_PAGE_CARD_USER = [
@@ -35,4 +41,7 @@ class TestCases:
 
     INVALID_DATA_FOR_BALANCE_PAGE_CARD_CASH = [
         [""]
+    ]
+    INVALID_DATA_FOR_BALANCE_PAGE_CARD_CASH_WORD = [
+        ["hola"]
     ]
