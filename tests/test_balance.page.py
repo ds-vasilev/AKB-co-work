@@ -7,15 +7,16 @@ from models.balance import BalanceUserModel
 
 class TestBalancePage:
 
-    def test_valid_entry_data_balance(self, app, register_user):
+    def test_valid_entry_data_balance(self, login_user):
         """
         Add balance
         """
-        app.login_page.open_login_page()
-        app.login_page.entry_data_login(email_data=register_user.email, pass_data=register_user.password_1)
-        app.balance_page.open_balance_page()
-        data = BalanceUserModel.random()
-        app.balance_page.entry_data_balance(data=data)
+        login_user.balance_page.open_balance_page()
+        # app.login_page.open_login_page()
+        # app.login_page.entry_data_login(email_data=register_user.email, pass_data=register_user.password_1)
+        # app.balance_page.open_balance_page()
+        # data = BalanceUserModel.random()
+        # app.balance_page.entry_data_balance(data=data)
         # assert app.login_page.log_status_on_top_right() == LogMessages.SUCCESS
 
 

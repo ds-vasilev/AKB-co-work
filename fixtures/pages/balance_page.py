@@ -7,17 +7,20 @@ class BalancePage(BasePage):
     CARD_BAYER = (By.ID, "card")
     DATA_CARD_BAYER = (By.ID, "data-card")
     COUNT_CASH = (By.ID, "data-money")
-    CHECK_AGREE = (By.XPATH, "//input[@type='checkbox']")
-    BT_TRANSFER = (By.CLASS_NAME, "waves-effect waves-light btn")
+    # CHECK_AGREE = (By.XPATH, "//input[@type='checkbox']")
+    CHECK_AGREE = (By.ID, "agree")
+    # BT_TRANSFER = (By.CLASS_NAME, "waves")
+    BT_TRANSFER = (By.XPATH, "//button[@class='waves-effect waves-light btn']")
     BT_BALANCE = (By.ID, "blance-link")
 
     def open_balance_page(self):
         """
         open balance page
         """
+        self.open_page(self.app.url)
         self.click_element(locator=self.BT_BALANCE)
 
-    def entry_data_balance(self, name: str, card: int, date_card: str, cash: float):
+    def entry_data_balance(self, name: str, card: str, date_card: str, cash: str):
         """
         ввод данных в поля и клик
         """
