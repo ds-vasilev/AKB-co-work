@@ -15,9 +15,8 @@ class BalanceUserModel:
     @staticmethod
     def random():
         name = fake.name()
-        card = fake.credit_card_number()
-        # card_data = fake.credit_card_expire()
-        card_data = "12/12"
+        card = fake.credit_card_number(card_type='mastercard')
+        card_data = fake.credit_card_expire()
         print(card_data)
         cash = str(random.randint(1000, 5000))
         return BalanceUserModel(name=name, card=card,
