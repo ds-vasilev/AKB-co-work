@@ -5,6 +5,9 @@ fake = Faker()
 
 
 class BalanceUserModel:
+    """
+    При вызове генерирует рандомные данные для банковских карт пользователей.
+    """
     def __init__(self, name: str = None, card: str = None,
                  card_data: str = None, cash: str = None):
         self.name = name

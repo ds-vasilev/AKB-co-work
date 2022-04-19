@@ -31,6 +31,7 @@ class TestCases:
     INVALID_DATA_FOR_BALANCE_PAGE_CARD_DATE = [
         [""]
     ]
+
     INVALID_DATA_FOR_BALANCE_PAGE_CARD_DATE_WORD = [
         ["salut"]
     ]
@@ -42,6 +43,7 @@ class TestCases:
     INVALID_DATA_FOR_BALANCE_PAGE_CARD_CASH = [
         [""]
     ]
+
     INVALID_DATA_FOR_BALANCE_PAGE_CARD_CASH_WORD = [
         ["hola"]
     ]

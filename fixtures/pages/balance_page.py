@@ -1,5 +1,4 @@
 import time
-
 from fixtures.pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 
@@ -35,6 +34,7 @@ class BalancePage(BasePage):
         self.fill(locator=self.COUNT_CASH, value=cash)
         self.click_element(locator=self.CHECK_AGREE)
         self.click_element(locator=self.BT_TRANSFER)
+        time.sleep(1)
 
     def invalid_entry_data_balance(self, name: str, card: str, date_card: str, cash: str):
         """
