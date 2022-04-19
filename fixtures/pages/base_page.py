@@ -1,3 +1,4 @@
+from selenium.webdriver import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -19,12 +20,26 @@ class BasePage:
         )
         return element
 
+    def _find_all_elements(self, locator, wait_time = 20):
+        """
+        Find element. Use Explicit wait
+        :param locator: locator like (By.ID, 'name')
+        :param wait_time: wait time
+        :return: return selenium element
+        """
+        elements = WebDriverWait(self.app.driver, wait_time).until(
+            EC.presence_of_all_elements_located(locator),
+            message=f"Can't find element by locator {locator}",
+        )
+        return elements
+
     def click_element(self, locator, wait_time = 20):
         """
         Click element.
         """
         element = self._find_element(locator, wait_time)
         element.click()
+        self.app.driver.fullscreen_window()
 
     def fill(self, locator, value: str, wait_time=20):
         """
@@ -55,3 +70,22 @@ class BasePage:
         """
         element = self._find_element(locator, wait_time)
         element.clear()
+
+    def re_fresh(self, locator, wait_time = 20):
+        """
+        Refresh element.
+        """
+        element = self._find_element(locator, wait_time)
+        element.send_keys(Keys.F5)
+        self.app.driver.fullscreen_window()
+
+    def text_on_all_same_fields(self, locator, wait_time=20) -> list:
+        """
+        Get elementS text.
+        """
+        elements = self._find_all_elements(locator, wait_time)
+        biba = []
+        for i in elements:
+            n = i.text
+            biba.append(n)
+        return biba
