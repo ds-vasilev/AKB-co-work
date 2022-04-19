@@ -1,72 +1,96 @@
-import time
-from fixtures.constants import LogMessages
+from fixtures.constants import BalMessages
+from fixtures.constants_test_cases import TestCases
 from models.balance import BalanceUserModel
+import pytest
 
 
-class TestBalancePage:
+# доделать при вводе в поля буквенных символов Erorr! Please check network!
+# разнести ерроры в файл
+# баг при введении 16 символов в поле номер карты
 
+class TestSignInPage:
     def test_valid_login(self, app, login_user):
         """
-        Логин.
+        Валидный тест. Внесение денег на карту
         """
-        # data = BalanceUserModel.random()
         app.balance_page.open_balance_page()
         data = BalanceUserModel.random()
-        # time.sleep(10)
         app.balance_page.entry_data_balance(name=data.name, card=data.card, date_card=data.card_data, cash=data.cash)
-        while True:
-            ...
+        assert app.balance_page.log_status_on_top_right() == f"All good, you added {data.cash} RUB to your account"
 
+    @pytest.mark.parametrize("invalid_card_number", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_NUM)
+    def test_invalid_card_number(self, app, login_user, invalid_card_number):
+        """
+        Проверка ввода невалидных значений в поле номер карты
+        """
+        app.balance_page.open_balance_page()
+        data = BalanceUserModel.random()
+        app.balance_page.entry_data_balance(name=data.name, card=invalid_card_number, date_card=data.card_data,
+                                            cash=data.cash)
+        assert app.balance_page.log_status_invalid() == "Check card number! It must be 16 symbols and not empty!"
 
+    @pytest.mark.parametrize("invalid_card_number", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_NUM_WORD)
+    def test_invalid_card_number_input_word(self, app, login_user, invalid_card_number):
+        """
+        Проверка ввода невалидных значений в поле номер карты
+        """
+        app.balance_page.open_balance_page()
+        data = BalanceUserModel.random()
+        app.balance_page.entry_data_balance(name=data.name, card=invalid_card_number, date_card=data.card_data,
+                                            cash=data.cash)
+        assert app.balance_page.log_status_invalid_input_word() == "Erorr, check network!"
 
-    # def test_name_lastame(self, app):  # todo ластнейма нет
-    #     """имя"""
-    #     pass
-    #
-    # def test_name_lastame_null(self, app):
-    #     """имя нулевое"""
-    #     pass
-    #
-    # def test_cart_number_16(self, app):
-    #     """номер карты цифр 16"""
-    #     pass
-    #
-    # def test_cart_number_16_null(self, app):
-    #     """номер карты цифр 16 нулевое"""
-    #     pass
-    #
-    # def test_cart_number_16_invalid_more(self, app):
-    #     """номер карты цифр <16"""
-    #     pass
-    #
-    # def test_cart_number_16_invalid_less(self, app):
-    #     """номер карты цифр >16"""
-    #     pass
-    #
-    # def test_cart_number_16_invalid_str(self, app):
-    #     """номер карты буквы"""
-    #     pass
-    #
-    # def test_date(self, app):
-    #     """Дата"""  # todo нет контроля формы даты
-    #     pass
-    #
-    # def test_date_null(self, app):
-    #     """Дата нулевая"""
-    #     pass
-    #
-    # def test_summ(self, app):  # todo нет контроля формы, проходят и букы
-    #     """наличие суммы в поле суммы"""
-    #     pass
-    #
-    # def test_summ_null(self, app):
-    #     """пустое поле суммы"""
-    #     pass
-    #
-    # def test_agree_rules(self, app):
-    #     """галка в согласии"""
-    #     pass
-    #
-    # def test_agree_rules_null(self, app):
-    #     """без галки в согласии"""
-    #     pass
+    @pytest.mark.parametrize("invalid_card_date", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_DATE)
+    def test_invalid_card_date(self, app, login_user, invalid_card_date):
+        """
+        Пустое значение поля ввода дота карты
+        """
+        app.balance_page.open_balance_page()
+        data = BalanceUserModel.random()
+        app.balance_page.entry_data_balance(name=data.name, card=data.card, date_card=invalid_card_date,
+                                            cash=data.cash)
+        assert app.balance_page.log_status_invalid() == "Check card date! It must be not empty!"
+
+    @pytest.mark.parametrize("invalid_card_date", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_DATE_WORD)
+    def test_invalid_card_date_input_word(self, app, login_user, invalid_card_date):
+        """
+        Проверка ввода невалидных значений в поле номер карты
+        """
+        app.balance_page.open_balance_page()
+        data = BalanceUserModel.random()
+        app.balance_page.entry_data_balance(name=data.name, card=data.card, date_card=invalid_card_date,
+                                            cash=data.cash)
+        assert app.balance_page.log_status_invalid_input_word() == "Erorr, check network!"
+
+    @pytest.mark.parametrize("invalid_card_user", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_USER)
+    def test_invalid_card_date(self, app, login_user, invalid_card_user):
+        """
+        Пустое значение поля ввода имени пользователя
+        """
+        app.balance_page.open_balance_page()
+        data = BalanceUserModel.random()
+        app.balance_page.entry_data_balance(name=invalid_card_user, card=data.card, date_card=data.card_data,
+                                            cash=data.cash)
+        assert app.balance_page.log_status_invalid() == "Check user name and last name! It must be not empty!"
+
+    @pytest.mark.parametrize("invalid_card_cash", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_USER)
+    def test_invalid_card_cash(self, app, login_user, invalid_card_cash):
+        """
+        Пустое значение поля ввода денежных средств
+        """
+        app.balance_page.open_balance_page()
+        data = BalanceUserModel.random()
+        app.balance_page.entry_data_balance(name=data.name, card=data.card, date_card=data.card_data,
+                                            cash=invalid_card_cash)
+        assert app.balance_page.log_status_invalid() == "Check money! It must be not empty!"
+
+    @pytest.mark.parametrize("invalid_card_cash", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_USER)
+    def test_invalid_card_cash(self, app, login_user, invalid_card_cash):
+        """
+        Пустое значение поля ввода денежных средств
+        """
+        app.balance_page.open_balance_page()
+        data = BalanceUserModel.random()
+        app.balance_page.invalid_entry_data_balance(name=data.name, card=data.card, date_card=data.card_data,
+                                                    cash=data.cash)
+        assert app.balance_page.log_status_invalid() == "Read agree and click checkbox!"
