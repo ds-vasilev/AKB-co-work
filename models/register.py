@@ -4,6 +4,9 @@ fake = Faker()
 
 
 class RegisterUserModel:
+    """
+    При вызове генерирует рандомных пользователей.
+    """
     def __init__(self, email: str = None, password_1: str = None,
                  password_2: str = None):
         self.email = email

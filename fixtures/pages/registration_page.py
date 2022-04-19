@@ -13,9 +13,6 @@ class RegistrationPage(BasePage):
     MESSAGE_REG_STATUS_ERROR_BIG_RED = (By.CLASS_NAME, "card-panel")
     REG_INTERFACE_IMAGE = (By.CLASS_NAME, "image-login")
     REG_INTERFACE_REG_NEW_USER = (By.CSS_SELECTOR, "h4")
-    # REG_INTERFACE_EMAIL = (By.CLASS_NAME, "image-login")
-    # REG_INTERFACE_PASS_1 = (By.CLASS_NAME, "image-login")
-    # REG_INTERFACE_PASS_2 = (By.CLASS_NAME, "image-login")
 
     def header_verifiers(self):   # Todo будет вынесено в отдельную страницу после окончательно обсуждения внутри команды
         pass

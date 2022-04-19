@@ -12,6 +12,9 @@ class LogMessages:
     INVALID_CREDENTAILS = "Invalid credentials"
 
 
+class BuyMessages:
+    "Product bananas buy sucess!"
+    # "add to cart"
 
 
 class ErrorText:
