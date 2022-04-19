@@ -15,17 +15,12 @@ class ReactShopPage(BasePage):
     SEARCH_BUTTON = (By.CLASS_NAME, "search-btn")
     FIRST_CARD_TITLE = (By.CLASS_NAME, "card-title")
 
-
     def open_shop_page(self):
         """
         Open shop mainpage.
         """
         self.open_page(self.app.url)
         self.click_element(locator=self.SHOP_LOGO)
-        # self.re_fresh(locator=self.SHOP_LOGO)
-        # self.click_element(locator=self.SHOP_LOGO)
-
-
 
     def item_add_in_basket(self):
         """
