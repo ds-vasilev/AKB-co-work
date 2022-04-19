@@ -1,5 +1,3 @@
-import time
-
 from fixtures.constants import BalMessages
 from fixtures.constants_test_cases import TestCases
 from models.balance import BalanceUserModel
