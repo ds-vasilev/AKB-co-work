@@ -40,14 +40,12 @@ class ReactShopPage(BasePage):
         """
         self.click_element(locator=self.BUY_BUTTON_IN_BASKET)
 
-    def refresh_for_buy(self):
+    def refresh_for_buy(self):  # Todo поменять название
         """
         Рефреш страницы.
         """
-        # self.re_fresh(locator=self.SHOP_LOGO)
-        time.sleep(1)
+        time.sleep(1)  # Todo поменять
         self.click_element(locator=self.SHOP_LOGO)
-
 
     def log_status_on_top_right(self) -> str:
         """
@@ -87,7 +85,13 @@ class ReactShopPage(BasePage):
 
     def all_card_title(self):
         """
-        Цена первого товара в выдаче.
+        Цена всех товаров в выдаче.
         """
         element = self.text_on_all_same_fields(locator=self.FIRST_CARD_TITLE)
         return element
+
+    def time_balance_checker(self, balance_on_finish):
+        """
+        Таймер ожидания обновления баланса.
+        """
+        self.wait_element_text(locator=self.BALANCE_ID, text=f"Balance is {balance_on_finish}")

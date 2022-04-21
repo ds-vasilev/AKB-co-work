@@ -1,3 +1,4 @@
+import time
 from selenium.webdriver import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,7 +8,7 @@ class BasePage:
     def __init__(self, app):
         self.app = app
 
-    def _find_element(self, locator, wait_time = 20):
+    def _find_element(self, locator, wait_time=20):
         """
         Find element. Use Explicit wait
         :param locator: locator like (By.ID, 'name')
@@ -20,7 +21,7 @@ class BasePage:
         )
         return element
 
-    def _find_all_elements(self, locator, wait_time = 20):
+    def _find_all_elements(self, locator, wait_time=20):
         """
         Find element. Use Explicit wait
         :param locator: locator like (By.ID, 'name')
@@ -33,7 +34,7 @@ class BasePage:
         )
         return elements
 
-    def click_element(self, locator, wait_time = 20):
+    def click_element(self, locator, wait_time=20):
         """
         Click element.
         """
@@ -64,14 +65,14 @@ class BasePage:
         self.app.driver.get(url)
         self.app.driver.fullscreen_window()
 
-    def clear(self, locator, wait_time = 20):
+    def clear(self, locator, wait_time=20):
         """
         Clear element.
         """
         element = self._find_element(locator, wait_time)
         element.clear()
 
-    def re_fresh(self, locator, wait_time = 20):
+    def re_fresh(self, locator, wait_time=20):
         """
         Refresh element.
         """
@@ -89,3 +90,16 @@ class BasePage:
             n = i.text
             biba.append(n)
         return biba
+
+    def wait_element_text(self, locator, text, wait_time=5):
+        """
+        Реализация слипа через явные ожидания.
+        """
+        timestamp = time.time() + wait_time
+        while time.time() < timestamp:
+            element = self._find_element(locator)
+            print(element.text, text)
+            if element.text == text:
+                return text
+            time.sleep(0.5)
+        raise Exception

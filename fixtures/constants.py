@@ -12,11 +12,6 @@ class LogMessages:
     INVALID_CREDENTAILS = "Invalid credentials"
 
 
-class BuyMessages:
-    "Product bananas buy sucess!"
-    # "add to cart"
-
-
 class BalMessages:
     SUCCESS = "All good, you added 1890 RUB to your account"
     ALREADY_LOGIN = "You already login, please click logout!"

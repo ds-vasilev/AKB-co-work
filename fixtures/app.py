@@ -1,7 +1,5 @@
-from fixtures.pages.balance_page import BalancePage
 from fixtures.pages.react_shop_page import ReactShopPage
 from fixtures.pages.balance_page import BalancePage
-from fixtures.pages.login_page import LoginPage
 from fixtures.pages.registration_page import RegistrationPage
 from fixtures.pages.login_page import LoginPage
 
