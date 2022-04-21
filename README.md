@@ -1,4 +1,4 @@
-[![Python application](https://github.com/ds-vasilev/AKB-co-work/actions/workflows/python-app.yml/badge.svg)](https://github.com/ds-vasilev/AKB-co-work/actions/workflows/python-app.yml)
+
 
 Our test app https://berpress.github.io/react-shop/
 

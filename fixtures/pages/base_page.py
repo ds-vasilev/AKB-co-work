@@ -80,7 +80,7 @@ class BasePage:
         element.send_keys(Keys.F5)
         self.app.driver.fullscreen_window()
 
-    def text_on_all_same_fields(self, locator, wait_time=20) -> list:
+    def text_on_all_same_fields(self, locator, wait_time=10) -> list:
         """
         Get elementS text.
         """

@@ -9,6 +9,7 @@ import pytest
 # баг при введении 16 символов в поле номер карты
 
 class TestSignInPage:
+    @pytest.mark.xfail()
     def test_valid_login(self, app, login_user):
         """
         Валидный тест. Внесение денег на карту
@@ -18,6 +19,7 @@ class TestSignInPage:
         app.balance_page.entry_data_balance(name=data.name, card=data.card, date_card=data.card_data, cash=data.cash)
         assert app.balance_page.log_status_on_top_right() == f"All good, you added {data.cash} RUB to your account"
 
+    @pytest.mark.xfail()
     @pytest.mark.parametrize("invalid_card_number", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_NUM)
     def test_invalid_card_number(self, app, login_user, invalid_card_number):
         """
@@ -29,6 +31,7 @@ class TestSignInPage:
                                             cash=data.cash)
         assert app.balance_page.log_status_invalid() == "Check card number! It must be 16 symbols and not empty!"
 
+    @pytest.mark.xfail()
     @pytest.mark.parametrize("invalid_card_number", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_NUM_WORD)
     def test_invalid_card_number_input_word(self, app, login_user, invalid_card_number):
         """
@@ -51,6 +54,7 @@ class TestSignInPage:
                                             cash=data.cash)
         assert app.balance_page.log_status_invalid() == "Check card date! It must be not empty!"
 
+    @pytest.mark.xfail()
     @pytest.mark.parametrize("invalid_card_date", TestCases.INVALID_DATA_FOR_BALANCE_PAGE_CARD_DATE_WORD)
     def test_invalid_card_date_input_word(self, app, login_user, invalid_card_date):
         """
