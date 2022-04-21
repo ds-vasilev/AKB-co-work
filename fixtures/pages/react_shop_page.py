@@ -40,11 +40,11 @@ class ReactShopPage(BasePage):
         """
         self.click_element(locator=self.BUY_BUTTON_IN_BASKET)
 
-    def refresh_for_buy(self):
+    def refresh_for_buy(self):  # Todo поменять название
         """
         Рефреш страницы.
         """
-        time.sleep(1)
+        time.sleep(1)  # Todo поменять
         self.click_element(locator=self.SHOP_LOGO)
 
 
@@ -95,5 +95,5 @@ class ReactShopPage(BasePage):
         """
         Таймер ожидания обновления баланса.
         """
-        self.time_mashine(locator=self.BALANCE_ID, what_we_find=f"Balance is {balance_on_finish}")
+        self.wait_element_text(locator=self.BALANCE_ID, text=f"Balance is {balance_on_finish}")
 

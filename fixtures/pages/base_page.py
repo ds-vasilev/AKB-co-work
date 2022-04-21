@@ -94,15 +94,15 @@ class BasePage:
             biba.append(n)
         return biba
 
-    def time_mashine(self, locator, what_we_find, wait_time=5):
+    def wait_element_text(self, locator, text, wait_time=5):
         """
         Реализация слипа через явные ожидания.
         """
         timestamp = time.time() + wait_time
         while time.time() < timestamp:
             element = self._find_element(locator)
-            print(element.text, what_we_find)
-            if element.text == what_we_find:
-                return
+            print(element.text, text)
+            if element.text == text:
+                return text
             time.sleep(0.5)
         raise Exception
