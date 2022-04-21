@@ -1,4 +1,6 @@
 import logging
+import os
+import allure
 import pytest
 import requests
 from selenium import webdriver
@@ -8,7 +10,7 @@ from fixtures.constants import LogMessages
 from models.register import RegisterUserModel
 from selenium.webdriver.chrome.options import Options
 from models.balance import BalanceUserModel
-import time
+
 
 logger = logging.getLogger("rss")
 
@@ -39,6 +41,27 @@ def app(request):
     app.quit()
 
 
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item):
+    outcome = yield
+    rep = outcome.get_result()
+    if rep.when == "call" and rep.failed:
+        mode = "a" if os.path.exists("failures") else "w"
+        try:
+            with open("failures", mode):
+                if "app" in item.fixturenames:
+                    web_driver = item.funcargs["app"]
+                else:
+                    return
+            allure.attach(
+                web_driver.driver.get_screenshot_as_png(),
+                name="screenshot",
+                attachment_type=allure.attachment_type.PNG,
+            )
+        except Exception as e:
+            print("Fail to take screen-shot: {}".format(e))
+
+
 @pytest.fixture
 def register_user():
     """
@@ -48,7 +71,7 @@ def register_user():
     payload = {"username": data.email, "password": data.password_1}
     r = requests.post("https://stores-tests-api.herokuapp.com/register", data=payload)
     assert r.status_code == 201
-    print(data.email, data.password_1)
+    logging.info(f"{data.email}, {data.password_1}")
     return data
 
 
@@ -76,4 +99,4 @@ def balance_user(app, login_user):
     data.cash = "5000"
     app.balance_page.entry_data_balance(name=data.name, card=data.card,
                                         date_card=data.card_data, cash=data.cash)
-    print(data.name, data.card, data.card_data, data.cash)
+    logging.info(f"{data.name}, {data.card}, {data.card_data}, {data.cash}")

@@ -44,7 +44,6 @@ class ReactShopPage(BasePage):
         """
         Рефреш страницы.
         """
-        # self.re_fresh(locator=self.SHOP_LOGO)
         time.sleep(1)
         self.click_element(locator=self.SHOP_LOGO)
 
@@ -87,7 +86,14 @@ class ReactShopPage(BasePage):
 
     def all_card_title(self):
         """
-        Цена первого товара в выдаче.
+        Цена всех товаров в выдаче.
         """
         element = self.text_on_all_same_fields(locator=self.FIRST_CARD_TITLE)
         return element
+
+    def time_balance_checker(self, balance_on_finish):
+        """
+        Таймер ожидания обновления баланса.
+        """
+        self.time_mashine(locator=self.BALANCE_ID, what_we_find=f"Balance is {balance_on_finish}")
+
