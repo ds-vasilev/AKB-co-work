@@ -14,6 +14,7 @@ from models.balance import BalanceUserModel
 
 logger = logging.getLogger("rss")
 
+
 def pytest_addoption(parser):
     parser.addoption(
         "--url",
@@ -69,7 +70,8 @@ def register_user():
     """
     data = RegisterUserModel.random()
     payload = {"username": data.email, "password": data.password_1}
-    r = requests.post("https://stores-tests-api.herokuapp.com/register", data=payload)
+    r = requests.post("https://stores-tests-api.herokuapp.com/register",
+                      data=payload)
     assert r.status_code == 201
     logging.info(f"{data.email}, {data.password_1}")
     return data
@@ -78,10 +80,12 @@ def register_user():
 @pytest.fixture
 def login_user(app, register_user):
     """
-    Фикстура для логина нового пользователя. Реализована не через АПИ в соотв с заданием.
+    Фикстура для логина нового пользователя.
+    Реализована через UI в соотв с заданием.
     """
     app.login_page.open_login_page()
-    app.login_page.entry_data_login(email_data=register_user.email, pass_data=register_user.password_1)
+    app.login_page.entry_data_login(email_data=register_user.email,
+                                    pass_data=register_user.password_1)
     assert app.login_page.log_status_on_top_right() == LogMessages.SUCCESS
 
 

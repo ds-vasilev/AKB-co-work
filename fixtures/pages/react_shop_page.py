@@ -47,7 +47,6 @@ class ReactShopPage(BasePage):
         time.sleep(1)  # Todo поменять
         self.click_element(locator=self.SHOP_LOGO)
 
-
     def log_status_on_top_right(self) -> str:
         """
         Информационная всплывашка сверху-справа.
@@ -96,4 +95,3 @@ class ReactShopPage(BasePage):
         Таймер ожидания обновления баланса.
         """
         self.wait_element_text(locator=self.BALANCE_ID, text=f"Balance is {balance_on_finish}")
-

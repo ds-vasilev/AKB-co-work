@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from fixtures.pages.base_page import BasePage
-from models.register import RegisterUserModel
 
 
 class LoginPage(BasePage):
@@ -9,7 +8,6 @@ class LoginPage(BasePage):
     PASS = (By.ID, "password")
     LOG_BUTTON = (By.ID, "register")
     MESSAGE_LOG_STATUS_TOP_RIGHT = (By.CLASS_NAME, "toast")
-
 
     def open_login_page(self):
         """

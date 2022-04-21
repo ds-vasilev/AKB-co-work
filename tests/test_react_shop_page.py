@@ -1,4 +1,3 @@
-import time
 import logging
 
 
@@ -20,7 +19,6 @@ class TestReactShop:
         balance_on_finish = balance_on_finish_calculate  # сумма из строки баланса. Отрезаем "Balance is "
         assert balance_on_finish == balance_on_start - first_item_price
         logging.info(f"баланс {app.react_shop_page.balance()}")
-
 
     def test_buy_all_goods_valid(self, app):
         """

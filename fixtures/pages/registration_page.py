@@ -31,7 +31,6 @@ class RegistrationPage(BasePage):
         self.open_page(self.app.url)
         self.click_element(locator=self.REG_BUTTON_ON_HEADER)
 
-
     def entry_data_registration(self, data: RegisterUserModel):
         """
         data entry in fields

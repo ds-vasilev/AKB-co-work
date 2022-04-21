@@ -3,7 +3,6 @@ import time
 from fixtures.constants import RegMessages
 from models.register import RegisterUserModel
 from fixtures.constants_test_cases import TestCases
-#НУЖНЫ ПРОВЕРКИ ИНТЕРФЕЙСА
 
 
 class TestRegistrationPage:
@@ -55,9 +54,9 @@ class TestRegistrationPage:
         """
         app.registration_page.open_registration_page()
         data = RegisterUserModel.random()
-        data.email  = "112@111.ru"
-        data.password_1  = "111@111.ru"
-        data.password_2  = "111@111.ru"
+        data.email = "112@111.ru"
+        data.password_1 = "111@111.ru"
+        data.password_2 = "111@111.ru"
         app.registration_page.entry_data_registration(data=data)
         time.sleep(3)
         app.registration_page.entry_data_registration(data=data)
