@@ -23,6 +23,9 @@ def pytest_addoption(parser):
         help="store",
     ),
     parser.addoption("--headless", action="store_true", help="Headless mode"),
+    parser.addoption("--api_url", action="store",
+                     default="https://stores-tests-api.herokuapp.com/register",
+                     help="store API"),
 
 
 @pytest.fixture
