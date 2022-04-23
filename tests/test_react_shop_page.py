@@ -1,6 +1,4 @@
 import logging
-import time
-
 
 class TestReactShop:
     def test_buy_goods_valid(self, app, balance_user):
@@ -15,8 +13,7 @@ class TestReactShop:
         balance_on_finish_calculate = balance_on_start - first_item_price
         app.react_shop_page.press_buy_in_basket()
         assert app.react_shop_page.log_status_on_top_right() is not None
-        # app.react_shop_page.refresh_for_buy()
-        # time.sleep(3)
+        app.react_shop_page.refresh_for_buy()
         app.react_shop_page.time_balance_checker(balance_on_finish=balance_on_finish_calculate)
         balance_on_finish = app.react_shop_page.balance()
         assert balance_on_finish == balance_on_start - first_item_price
