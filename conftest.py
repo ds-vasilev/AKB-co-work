@@ -30,6 +30,7 @@ def app(request):
     url = request.config.getoption("--url")
     headless = request.config.getoption("--headless")
     chrome_options = Options()
+    chrome_options.add_argument("--window-size=1800,1080")
     if headless:
         chrome_options.headless = True
     else:
@@ -40,6 +41,7 @@ def app(request):
     app = Application(driver, url)
     yield app
     app.quit()
+
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

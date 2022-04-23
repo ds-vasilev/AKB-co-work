@@ -14,12 +14,6 @@ class RegistrationPage(BasePage):
     REG_INTERFACE_IMAGE = (By.CLASS_NAME, "image-login")
     REG_INTERFACE_REG_NEW_USER = (By.CSS_SELECTOR, "h4")
 
-    def header_verifiers(self):   # Todo будет вынесено в отдельную страницу после окончательно обсуждения внутри команды
-        pass
-
-    def footer_verifiers(self):  # Todo будет вынесено в отдельную страницу после окончательно обсуждения внутри команды
-        pass
-
     def reg_interface_image(self):
         element = self.app.driver.find_element(*self.REG_INTERFACE_IMAGE)
         element = self.app.driver.find_element(*self.REG_INTERFACE_REG_NEW_USER)
@@ -66,4 +60,9 @@ class RegistrationPage(BasePage):
         алертная всплывашка снизу на невалидные данные.
         """
         element = self.text(locator=self.MESSAGE_REG_STATUS_ERROR_BIG_RED)
+        return element
+
+    def all_toast_statuses(self) -> list:
+        """информационная всплывашка справа-вверху"""
+        element = self.text_on_all_same_fields(locator=self.MESSAGE_REG_STATUS_TOP_RIGHT)
         return element

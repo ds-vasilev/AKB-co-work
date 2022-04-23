@@ -50,14 +50,15 @@ class TestRegistrationPage:
 
     def test_base_drop_404(self, app):
         """
-        Тест вылетает "Error, check network!".   TODO РЕАЛИЗОВАТЬ НОРМАЛЬНЫЙ НА ДВОЙНОЙ ВВОД!!!!!!!!!!!!!11111
+        Тест вылетает "Error, check network!".
         """
         app.registration_page.open_registration_page()
         data = RegisterUserModel.random()
-        data.email = "112@111.ru"
+        data.email = "11232@111.ru"
         data.password_1 = "111@111.ru"
         data.password_2 = "111@111.ru"
         app.registration_page.entry_data_registration(data=data)
         time.sleep(3)
         app.registration_page.entry_data_registration(data=data)
-        assert app.registration_page.reg_status_on_top_right() == RegMessages.ERROR_CHECK_NETWORK
+        print(app.registration_page.all_toast_statuses())
+        assert RegMessages.ERROR_CHECK_NETWORK in app.registration_page.all_toast_statuses()

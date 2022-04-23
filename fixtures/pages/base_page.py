@@ -40,7 +40,6 @@ class BasePage:
         """
         element = self._find_element(locator, wait_time)
         element.click()
-        self.app.driver.fullscreen_window()
 
     def fill(self, locator, value: str, wait_time=20):
         """
@@ -63,7 +62,6 @@ class BasePage:
         Open page.
         """
         self.app.driver.get(url)
-        self.app.driver.fullscreen_window()
 
     def clear(self, locator, wait_time=20):
         """
@@ -78,7 +76,6 @@ class BasePage:
         """
         element = self._find_element(locator, wait_time)
         element.send_keys(Keys.F5)
-        self.app.driver.fullscreen_window()
 
     def text_on_all_same_fields(self, locator, wait_time=10) -> list:
         """
