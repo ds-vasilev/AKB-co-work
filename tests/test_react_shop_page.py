@@ -19,13 +19,13 @@ class TestReactShop:
         assert balance_on_finish == balance_on_start - first_item_price
         logging.info(f"баланс {app.react_shop_page.balance()}")
 
-    # def test_buy_all_goods_valid(self, app):
-    #     """
-    #     Тест на добавление в корзину всех товаров.
-    #     """
-    #     app.react_shop_page.open_shop_page()
-    #     all_goods = app.react_shop_page.all_card_title()
-    #     assert len(all_goods) > 0
+    def test_buy_all_goods_valid(self, app):
+        """
+        Тест на добавление в корзину всех товаров.
+        """
+        app.react_shop_page.open_shop_page()
+        all_goods = app.react_shop_page.all_card_title()
+        assert len(all_goods) > 0
 
     def test_search_valid(self, app):
         """
