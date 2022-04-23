@@ -68,11 +68,11 @@ class ReactShopPage(BasePage):
         element = self.text(locator=self.FIRST_PLACE_PRICE)
         return element
 
-    def first_card_title(self) -> list:
+    def first_card_title(self) -> str:
         """
         Цена первого товара в выдаче.
         """
-        element = self.text_on_all_same_fields(locator=self.FIRST_CARD_TITLE)
+        element = self.text(locator=self.FIRST_CARD_TITLE)
         return element
 
     def search_product(self, search_data: str):

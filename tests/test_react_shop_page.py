@@ -40,13 +40,3 @@ class TestReactShop:
         x = app.react_shop_page.first_card_title()
         app.react_shop_page.search_product(search_data=x)
         assert app.react_shop_page.first_card_title() == x
-
-    @pytest.mark.xfail()
-    def test_search_invalid(self, app):
-        """
-        Проверка работы поиска не существующего товара и выдачи.
-        """
-        app.react_shop_page.open_shop_page()
-        x = "бипки"
-        app.react_shop_page.search_product(search_data=x)
-        assert app.react_shop_page.first_card_title()
