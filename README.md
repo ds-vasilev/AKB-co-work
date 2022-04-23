@@ -1,6 +1,7 @@
+[![Python application](https://github.com/ds-vasilev/AKB-co-work/actions/workflows/python-app_22_04.yml/badge.svg)](https://github.com/ds-vasilev/AKB-co-work/actions/workflows/python-app_22_04.yml)
 
-
-Our test app https://berpress.github.io/react-shop/
+Our test app 
+```https://berpress.github.io/react-shop/```
 
 How to start:
 ```python3 -m venv env
@@ -17,13 +18,13 @@ Tests start:
 pytest
 ```
 
-Code-check in:
+Code-check implemented through:
 ```
 https://pre-commit.com/
 ```
 
 
-logging in:
+logging implemented through:
 ```
 logging
 ```
