@@ -1,5 +1,6 @@
 from fixtures.pages.base_page import BasePage
 from selenium.webdriver.common.by import By
+import time
 
 
 class BalancePage(BasePage):
@@ -16,14 +17,14 @@ class BalancePage(BasePage):
 
     def open_balance_page(self):
         """
-        open balance page
+        Open balance page.
         """
         self.open_page(self.app.url)
         self.click_element(locator=self.BT_BALANCE)
 
     def entry_data_balance(self, name: str, card: str, date_card: str, cash: str):
         """
-        ввод данных в поля и клик
+        Enter data in the field and click.
         """
         self.fill(locator=self.NAME_BAYER, value=name)
         self.fill(locator=self.CARD_BAYER, value=card)
@@ -31,10 +32,11 @@ class BalancePage(BasePage):
         self.fill(locator=self.COUNT_CASH, value=cash)
         self.click_element(locator=self.CHECK_AGREE)
         self.click_element(locator=self.BT_TRANSFER)
+        time.sleep(1)
 
     def invalid_entry_data_balance(self, name: str, card: str, date_card: str, cash: str):
         """
-        ввод данных в поля и клик
+        Entering invalid data in the fields and clickingю
         """
         self.fill(locator=self.NAME_BAYER, value=name)
         self.fill(locator=self.CARD_BAYER, value=card)
@@ -43,16 +45,22 @@ class BalancePage(BasePage):
         self.click_element(locator=self.BT_TRANSFER)
 
     def log_status_on_top_right(self) -> str:
-        """информационная всплывашка справа-вверху"""
+        """
+        Information pop-up on the right-top.
+        """
         element = self.text(locator=self.SUCCESS_ADD_BALANCE)
         return element
 
     def log_status_invalid(self) -> str:
-        """информационная всплывашка справа-вверху"""
+        """
+        Information invalid pop-up on the right-top.Invalid card number.
+        """
         element = self.text(locator=self.INVALID_CARD_NUMBER)
         return element
 
     def log_status_invalid_input_word(self) -> str:
-        """информационная всплывашка справа-вверху"""
+        """
+        Information invalid pop-up on the right-top.
+        """
         element = self.text(locator=self.MESSAGE_LOG_STATUS_TOP_RIGHT)
         return element
