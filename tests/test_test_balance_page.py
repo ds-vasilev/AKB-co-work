@@ -1,12 +1,7 @@
-from fixtures.constants import BalMessages
 from fixtures.constants_test_cases import TestCases
 from models.balance import BalanceUserModel
 import pytest
 
-
-# доделать при вводе в поля буквенных символов Erorr! Please check network!
-# разнести ерроры в файл
-# баг при введении 16 символов в поле номер карты
 
 class TestSignInPage:
 
